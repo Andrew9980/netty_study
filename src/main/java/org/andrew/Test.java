@@ -1,8 +1,14 @@
 package org.andrew;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import org.andrew.convert.UserConvert;
 import org.andrew.obj.Person;
 import org.andrew.obj.User;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author siqing.xu
@@ -14,9 +20,6 @@ import org.andrew.obj.User;
 public class Test {
 
     public static void main(String[] args) {
-        User user = User.builder().age(10).name("Andrew").id(1).build();
-        Person person = UserConvert.CONVERT.convert2Person(user);
-        System.out.println(person);
     }
 
 }
