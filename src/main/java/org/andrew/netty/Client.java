@@ -45,14 +45,18 @@ public class Client {
                         log.info("连接出错：{}", future.cause().getMessage());
                     }
                 });
-
+        Channel channel = channelFuture.sync().channel();
         new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
-            String line = scanner.nextLine();
-            channelFuture.channel().writeAndFlush(line);
+            while (true) {
+                String line = scanner.nextLine();
+                if ("q".equals(line)) {
+                    channel.close();
+                    break;
+                }
+                channel.writeAndFlush(line);
+            }
         }).start();
-
-        channelFuture.channel().closeFuture().sync();
     }
 
 }
